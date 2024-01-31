@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Obavijesti o odabranom dugmetu</title>
+</head>
+<body>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET["dugme"])) {
+        $odabranoDugme = $_GET["dugme"];
+
+        switch ($odabranoDugme) {
+            case 'A':
+                echo "Odabrali ste dugme A - Prva obavijest.";
+                break;
+            case 'B':
+                echo "Odabrali ste dugme B - Druga obavijest.";
+                break;
+            case 'C':
+                echo "Odabrali ste dugme C - Treća obavijest.";
+                break;
+            default:
+                echo "Niste odabrali nijedno dugme.";
+        }
+    }
+}
+?>
+
+<form>
+    <button type="submit" name="dugme" value="A">Dugme A</button>
+    <button type="submit" name="dugme" value="B">Dugme B</button>
+    <button type="submit" name="dugme" value="C">Dugme C</button>
+</form>
+
+</body>
+</html>
 
