@@ -1,2 +1,52 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <title>Kalkulator</title>
+</head>
+<body>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET["brojA"]) && isset($_GET["brojB"]) && isset($_GET["operacija"])) {
+        $brojA = $_GET["brojA"];
+        $brojB = $_GET["brojB"];
+        $operacija = $_GET["operacija"];
+        if (is_numeric($brojA) && is_numeric($brojB) && preg_match("/^[+\-*\/]$/", $operacija)) {
+            $rezultat = Operacija($brojA, $brojB, $operacija);
+            echo "Rezultat operacije: $rezultat";
+        } else {
+            echo "Pogrešni ulazni podaci ili operacija.";
+        }
+    }
+}
+
+function Operacija($brojA, $brojB, $operacija) {
+    switch ($operacija) {
+        case '+':
+            return $brojA + $brojB;
+        case '-':
+            return $brojA - $brojB;
+        case '*':
+            return $brojA * $brojB;
+        case '/':
+          
+            if ($brojB != 0) {
+                return $brojA / $brojB;
+            } else {
+                return "Nije moguće dijeliti s nulom.";
+            }
+        default:
+            return false;
+    }
+}
+?>
+
+<form>
+    Broj A: <input type="text" name="brojA"><br>
+    Broj B: <input type="text" name="brojB"><br>
+    Operacija: <input type="text" name="operacija"><br>
+    <input type="submit" value="Rezultat">
+</form>
+</body>
 </html>
+
